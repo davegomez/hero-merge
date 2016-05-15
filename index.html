@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="src/vendor/normalize.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="app">
+    <div class="heroes">
+      <div class="card" v-for="hero in heroes">
+        <div class="personal-data">
+          <ul>
+            <li><strong>Name: </strong><span class="hero-name">{{ hero.hero_name }}</span></li>
+            <li><strong>Real Name: </strong><span class="real-name">{{ hero.real_name }}</span></li>
+            <li><strong>Gender: </strong><span class="gender">{{ hero.gender }}</span></li>
+          </ul>
+          <button v-on:click="editHero($index)">Edit</button>
+        </div>
+        <div class="characteristics">
+          <div>
+            <strong>Attributes</strong>
+            <ul>
+              <li v-for="(attribute, value) in hero.attributes">
+                {{ attribute }}: {{ value }}
+              </li>
+            </ul>
+          </div>
+          <div>
+            <strong>Powers</strong>
+            <ul>
+              <li v-for="power in hero.powers">
+                {{ power }}
+              </li>
+            </ul>
+          </div>
+          <div>
+            <strong>Weaknesses</strong>
+            <ul>
+              <li v-for="weakness in hero.weaknesses">
+                {{ weakness }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="editor-overlay">
+      <div class="card">
+        <div class="personal-data">
+          <ul>
+            <li><strong>Name: </strong><span class="hero-name">{{ heroes[heroToEdit].hero_name }}</span></li>
+            <li><strong>Real Name: </strong><span class="real-name">{{ heroes[heroToEdit].real_name }}</span></li>
+            <li><strong>Gender: </strong><span class="gender">{{ heroes[heroToEdit].gender }}</span></li>
+          </ul>
+        </div>
+        <div class="characteristics">
+          <div>
+            <strong>Attributes</strong>
+            <ul>
+              <li v-for="(attribute, value) in heroes[heroToEdit].attributes">
+                {{ attribute }}: {{ value }}
+              </li>
+            </ul>
+          </div>
+          <div>
+            <strong>Powers</strong>
+            <ul>
+              <li v-for="power in heroes[heroToEdit].powers">
+                {{ power }}
+              </li>
+            </ul>
+          </div>
+          <div>
+            <strong>Weaknesses</strong>
+            <ul>
+              <li v-for="weakness in heroes[heroToEdit].weaknesses">
+                {{ weakness }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button v-on:click="editHero()">X</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/vendor/vue.min.js"></script>
+  <script src="src/js/app.js"></script>
+</body>
+</html>
