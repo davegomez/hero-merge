@@ -1,0 +1,81 @@
+@import "../vendor/flex-grid";
+
+$lines: #ccc;
+
+body {
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+ul {
+  margin: 0;
+}
+
+.card {
+  border: 1px solid $lines;
+  border-radius: 4px;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.personal-data {
+  border-bottom: 1px solid $lines;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  li {
+    list-style: none;
+    margin-left: -40px;
+  }
+}
+
+.heroes {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 80%;
+}
+
+.characteristics {
+  display: flex;
+  justify-content: space-between;
+
+  & > div {
+    padding-right: 20px;
+    width: 33.3333%;
+  }
+
+  ul {
+    margin-top: 10px;
+  }
+
+  li {
+    margin-left: -10px;
+  }
+}
+
+.editor-overlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .9);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
+
+  .card {
+    background-color: #fff;
+    width: 70%;
+  }
+
+  &._active {
+    opacity: 1;
+    z-index: 1;
+  }
+}
