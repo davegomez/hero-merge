@@ -73,3 +73,4 @@ Temporary Items
 ### VisualStudioCode ###
 .vscode
 
+src/vendor/.*
