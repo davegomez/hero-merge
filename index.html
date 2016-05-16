@@ -10,14 +10,17 @@
 
   <div id="app">
     <div class="heroes">
+      <div class="control-panel">
+        <button class="new-hero" @click="toggleEditor">New Hero</button><button class="merge-heroes">Merge Heroes</button>
+      </div>
+
       <div class="card" v-for="hero in heroes">
         <div class="personal-data">
           <ul>
             <li><strong>Name: </strong><span class="hero-name">{{ hero.hero_name }}</span></li>
-            <li><strong>Real Name: </strong><span class="real-name">{{ hero.real_name }}</span></li>
+            <li><strong>Real name: </strong><span class="real-name">{{ hero.real_name }}</span></li>
             <li><strong>Gender: </strong><span class="gender">{{ hero.gender }}</span></li>
           </ul>
-          <button v-on:click="editHero($index)">Edit</button>
         </div>
         <div class="characteristics">
           <div>
@@ -52,38 +55,51 @@
       <div class="card">
         <div class="personal-data">
           <ul>
-            <li><strong>Name: </strong><span class="hero-name">{{ heroes[heroToEdit].hero_name }}</span></li>
-            <li><strong>Real Name: </strong><span class="real-name">{{ heroes[heroToEdit].real_name }}</span></li>
-            <li><strong>Gender: </strong><span class="gender">{{ heroes[heroToEdit].gender }}</span></li>
+            <li><strong>Name: </strong><input class="hero-name" v-model="newHero.hero_name"></li>
+            <li><strong>Real name: </strong><input class="real-name" v-model="newHero.real_name"></li>
+            <li><strong>Gender: </strong>
+              <div class="gender-selection">
+                <select class="gender" v-model="newHero.gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                <i class="chevron"></i>
+              </div>
           </ul>
         </div>
         <div class="characteristics">
           <div>
             <strong>Attributes</strong>
+            <input class="attribute-name" v-model="newAttribute">
+            <input class="attribute-value" v-model="newAttributeValue" min="0" max="100" maxlength="3">
+            <button @click="addAttribute">Add</button>
             <ul>
-              <li v-for="(attribute, value) in heroes[heroToEdit].attributes">
+              <li v-for="(attribute, value) in newHero.attributes">
                 {{ attribute }}: {{ value }}
               </li>
             </ul>
           </div>
           <div>
             <strong>Powers</strong>
+            <input v-model="newPower" @keyup.enter="addCharacteristic('newPower', 'powers')">
             <ul>
-              <li v-for="power in heroes[heroToEdit].powers">
+              <li v-for="power in newHero.powers">
                 {{ power }}
               </li>
             </ul>
           </div>
           <div>
             <strong>Weaknesses</strong>
+            <input v-model="newWeakness" @keyup.enter="addCharacteristic('newWeakness', 'weaknesses')">
             <ul>
-              <li v-for="weakness in heroes[heroToEdit].weaknesses">
+              <li v-for="weakness in newHero.weaknesses">
                 {{ weakness }}
               </li>
             </ul>
           </div>
         </div>
-        <button v-on:click="editHero()">X</button>
+        <button class="close" @click="toggleEditor">X</button>
+        <button class="save" @click="createNewHero">Save</button>
       </div>
     </div>
   </div>
