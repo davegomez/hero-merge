@@ -74,3 +74,5 @@ Temporary Items
 .vscode
 
 src/vendor/.*
+styles.css
+styles.css.map
